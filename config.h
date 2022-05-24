@@ -16,11 +16,16 @@ static const char col_cyan[]        = "#005577";
 static const char col_blue[]        = "#3399ff";
 static const char col_off_white[]   = "#d2dbe4";
 static const char col_dark_blue[]   = "#15416e";
+
+#include "/home/alex/.cache/wal/colors-wal-dwm.h"
+/*
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
+	//               fg         bg         border
 	[SchemeNorm] = { col_off_white, col_blue, col_gray1 },
 	[SchemeSel]  = { col_off_white, col_blue, col_blue },
 };
+
+*/
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -99,6 +104,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
+    { MODKEY|ControlMask,           XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
