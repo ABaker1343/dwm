@@ -77,6 +77,8 @@ static const char *firefox_privatecmd[] = { "firefox", "--private", NULL};
 static const char *spotify_play_pause_cmd[] = { "playerctl", "-p", "spotify", "play-pause", NULL};
 static const char *spotify_next_cmd[] = { "playerctl", "-p", "spotify", "next", NULL};
 static const char *spotify_prev_cmd[] = { "playerctl", "-p", "spotify", "previous", NULL};
+static const char *volume_down_cmd[] = {"pactl", "set-sink-volume", "0", "-5%", NULL}; 
+static const char *volume_up_cmd[] = {"pactl", "set-sink-volume", "0", "+5%", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -91,6 +93,8 @@ static Key keys[] = {
     { MODKEY,                       XK_F6,     spawn,          {.v = spotify_play_pause_cmd } },
     { MODKEY,                       XK_F7,     spawn,          {.v = spotify_next_cmd } },
     { MODKEY,                       XK_F5,     spawn,          {.v = spotify_prev_cmd } },
+    { MODKEY,                       XK_F2,     spawn,          {.v = volume_down_cmd } },
+    { MODKEY,                       XK_F3,     spawn,          {.v = volume_up_cmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
