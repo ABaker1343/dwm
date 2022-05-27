@@ -79,6 +79,7 @@ static const char *spotify_next_cmd[] = { "playerctl", "-p", "spotify", "next", 
 static const char *spotify_prev_cmd[] = { "playerctl", "-p", "spotify", "previous", NULL};
 static const char *volume_down_cmd[] = {"pactl", "set-sink-volume", "0", "-5%", NULL}; 
 static const char *volume_up_cmd[] = {"pactl", "set-sink-volume", "0", "+5%", NULL};
+static const char *pavucontrol_cmd[] = { "pavucontrol", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -89,6 +90,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = spotifycmd } },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discordcmd } },
     { MODKEY|ShiftMask,             XK_g,      spawn,          {.v = steamcmd } },
+    { MODKEY|ShiftMask,             XK_a,      spawn,          {.v = pavucontrol_cmd } },
     { 0,                            XK_Print,  spawn,          {.v = flameshotcmd } },
     { MODKEY,                       XK_F6,     spawn,          {.v = spotify_play_pause_cmd } },
     { MODKEY,                       XK_F7,     spawn,          {.v = spotify_next_cmd } },
