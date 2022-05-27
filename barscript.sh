@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 status () {
     #MEMTOTAL=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
