@@ -1641,12 +1641,16 @@ showhide(Client *c)
 		XMoveWindow(dpy, c->win, c->x, c->y);
 		if ((!c->mon->lt[c->mon->sellt]->arrange || c->isfloating) && !c->isfullscreen)
 			resize(c, c->x, c->y, c->w, c->h, 0);
+        //XReparentWindow(dpy, c->win, root, c->x, c->y);
+        //XMapWindow(dpy, c->win);
 		showhide(c->snext);
 	} else {
 		/* hide clients bottom up */
+        //XUnmapWindow(dpy, c->win);
 		showhide(c->snext);
 		XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
 	}
+    XFlush(dpy);
 }
 
 void

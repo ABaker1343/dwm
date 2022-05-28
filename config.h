@@ -77,8 +77,8 @@ static const char *firefox_privatecmd[] = { "firefox", "--private", NULL};
 static const char *spotify_play_pause_cmd[] = { "playerctl", "-p", "spotify", "play-pause", NULL};
 static const char *spotify_next_cmd[] = { "playerctl", "-p", "spotify", "next", NULL};
 static const char *spotify_prev_cmd[] = { "playerctl", "-p", "spotify", "previous", NULL};
-static const char *volume_down_cmd[] = {"pactl", "set-sink-volume", "0", "-5%", NULL}; 
-static const char *volume_up_cmd[] = {"pactl", "set-sink-volume", "0", "+5%", NULL};
+static const char *volume_down_cmd[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL};
+static const char *volume_up_cmd[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL};
 static const char *pavucontrol_cmd[] = { "pavucontrol", NULL };
 
 static Key keys[] = {
@@ -109,8 +109,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
-    { MODKEY|ControlMask,           XK_f,      togglefullscr,  {0} },
+	{ MODKEY,                       XK_s,      setlayout,      {.v = &layouts[2]} },
+    { MODKEY,                       XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
