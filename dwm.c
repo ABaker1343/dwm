@@ -1638,17 +1638,29 @@ showhide(Client *c)
 		return;
 	if (ISVISIBLE(c)) {
 		/* show clients top down */
-		XMoveWindow(dpy, c->win, c->x, c->y);
-		if ((!c->mon->lt[c->mon->sellt]->arrange || c->isfloating) && !c->isfullscreen)
-			resize(c, c->x, c->y, c->w, c->h, 0);
-        //XReparentWindow(dpy, c->win, root, c->x, c->y);
-        //XMapWindow(dpy, c->win);
+		//XMoveWindow(dpy, c->win, c->x, c->y);
+		//if ((!c->mon->lt[c->mon->sellt]->arrange || c->isfloating) && !c->isfullscreen)
+			//resize(c, c->x, c->y, c->w, c->h, 0);
+
+        XMapWindow(dpy, c->win);
+        XSetInputFocus(dpy, c->win, RevertToPointerRoot, CurrentTime);
+
 		showhide(c->snext);
 	} else {
 		/* hide clients bottom up */
-        //XUnmapWindow(dpy, c->win);
 		showhide(c->snext);
-		XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
+		//XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
+        static XWindowAttributes ra, ca;
+        XGetWindowAttributes(dpy, root, &ra);
+        XGetWindowAttributes(dpy, c->win, &ca);
+
+        XSelectInput(dpy, root, ra.your_event_mask & ~SubstructureNotifyMask);
+        XSelectInput(dpy, c->win, ca.your_event_mask & ~StructureNotifyMask);
+        XUnmapWindow(dpy, c->win);
+
+        XSelectInput(dpy, root, ra.your_event_mask);
+	    XSelectInput(dpy, c->win, ca.your_event_mask);
+
 	}
     XFlush(dpy);
 }
