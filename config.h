@@ -80,6 +80,7 @@ static const char *spotify_prev_cmd[] = { "playerctl", "-p", "spotify", "previou
 static const char *volume_down_cmd[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL};
 static const char *volume_up_cmd[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL};
 static const char *pavucontrol_cmd[] = { "pavucontrol", NULL };
+static const char *ranger_cmd[] = {"st", "-e", "ranger", "/home/alex", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -91,6 +92,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discordcmd } },
     { MODKEY|ShiftMask,             XK_g,      spawn,          {.v = steamcmd } },
     { MODKEY|ShiftMask,             XK_a,      spawn,          {.v = pavucontrol_cmd } },
+    { MODKEY|ShiftMask,             XK_r,      spawn,          {.v = ranger_cmd } },
     { 0,                            XK_Print,  spawn,          {.v = flameshotcmd } },
     { MODKEY,                       XK_F6,     spawn,          {.v = spotify_play_pause_cmd } },
     { MODKEY,                       XK_F7,     spawn,          {.v = spotify_next_cmd } },
@@ -128,7 +130,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+	{ MODKEY|ShiftMask|ControlMask, XK_e,      quit,           {0} },
 
     /* gap resizing */
     { MODKEY,                       XK_equal,  setgaps,       {.i = -1 } },
