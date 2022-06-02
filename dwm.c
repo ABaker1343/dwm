@@ -1636,6 +1636,7 @@ showhide(Client *c)
 {
 	if (!c)
 		return;
+
 	if (ISVISIBLE(c)) {
 		/* show clients top down */
 		//XMoveWindow(dpy, c->win, c->x, c->y);
