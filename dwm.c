@@ -49,7 +49,7 @@
 #define CLEANMASK(mask)         (mask & ~(numlockmask|LockMask) & (ShiftMask|ControlMask|Mod1Mask|Mod2Mask|Mod3Mask|Mod4Mask|Mod5Mask))
 #define INTERSECT(x,y,w,h,m)    (MAX(0, MIN((x)+(w),(m)->wx+(m)->ww) - MAX((x),(m)->wx)) \
                                * MAX(0, MIN((y)+(h),(m)->wy+(m)->wh) - MAX((y),(m)->wy)))
-#define ISVISIBLE(C)            ((C->tags & C->mon->tagset[C->mon->seltags]))
+#define ISVISIBLE(C)            ((C->tags & C->mon->tagset[C->mon->seltags]) | C->isfloating)
 #define LENGTH(X)               (sizeof X / sizeof X[0])
 #define MOUSEMASK               (BUTTONMASK|PointerMotionMask)
 #define WIDTH(X)                ((X)->w + 2 * (X)->bw)
@@ -1639,11 +1639,11 @@ showhide(Client *c)
 
 	if (ISVISIBLE(c)) {
 		/* show clients top down */
-		//XMoveWindow(dpy, c->win, c->x, c->y);
-		//if ((!c->mon->lt[c->mon->sellt]->arrange || c->isfloating) && !c->isfullscreen)
-			//resize(c, c->x, c->y, c->w, c->h, 0);
+		XMoveWindow(dpy, c->win, c->x, c->y);
 
         XMapWindow(dpy, c->win);
+		if ((!c->mon->lt[c->mon->sellt]->arrange || c->isfloating) && !c->isfullscreen)
+			resize(c, c->x, c->y, c->w, c->h, 0);
         XSetInputFocus(dpy, c->win, RevertToPointerRoot, CurrentTime);
 
 		showhide(c->snext);
@@ -1750,8 +1750,12 @@ togglefloating(const Arg *arg)
 {
 	if (!selmon->sel)
 		return;
-	if (selmon->sel->isfullscreen) /* no support for fullscreen windows */
-		return;
+	if (selmon->sel->isfullscreen) {/* no support for fullscreen windows */
+        const Arg* a = {0};
+        togglefullscr(a);
+        free(a);
+		//return;
+    }
 	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
 	if (selmon->sel->isfloating)
 		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
