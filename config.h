@@ -6,8 +6,8 @@ static const unsigned int snap      = 16;       /* snap pixel */
 static const unsigned int gappx     = 12;        /* size of the gaps (from fullgaps patch)*/
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "UbuntuMonoLigaturized:size=14" };
-static const char dmenufont[]       = "UbuntuMonoLigaturized:size=14";
+static const char *fonts[]          = { "UbuntuMonoLigaturized:size=18" };
+static const char dmenufont[]       = "UbuntuMonoLigaturized:size=18";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -99,6 +99,7 @@ static Key keys[] = {
     { MODKEY,                       XK_F5,     spawn,          {.v = spotify_prev_cmd } },
     { MODKEY,                       XK_F2,     spawn,          {.v = volume_down_cmd } },
     { MODKEY,                       XK_F3,     spawn,          {.v = volume_up_cmd } },
+    { MODKEY,                       XK_F10,    spawn,          SHCMD("transset-df -a") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
