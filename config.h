@@ -66,7 +66,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
 static const char *discordcmd[] = { "discord", NULL };
@@ -81,6 +81,7 @@ static const char *volume_down_cmd[] = {"pactl", "set-sink-volume", "@DEFAULT_SI
 static const char *volume_up_cmd[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL};
 static const char *pavucontrol_cmd[] = { "pavucontrol", NULL };
 static const char *ranger_cmd[] = {"st", "-e", "ranger", "/home/alex", NULL };
+static const char *dmenu_sound_select[] = {"/home/alex/.source/dwm/soundSelect.sh", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -91,7 +92,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = spotifycmd } },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discordcmd } },
     { MODKEY|ShiftMask,             XK_g,      spawn,          {.v = steamcmd } },
-    { MODKEY|ShiftMask,             XK_a,      spawn,          {.v = pavucontrol_cmd } },
+    { MODKEY|ShiftMask,             XK_a,      spawn,          {.v = dmenu_sound_select } },
     { MODKEY|ShiftMask,             XK_r,      spawn,          {.v = ranger_cmd } },
     { 0,                            XK_Print,  spawn,          {.v = flameshotcmd } },
     { MODKEY,                       XK_F6,     spawn,          {.v = spotify_play_pause_cmd } },
