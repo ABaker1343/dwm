@@ -713,11 +713,11 @@ drawbar(Monitor *m)
 		return;
 
 	/* draw status first so it can be overdrawn by tags later */
-	//if (m == selmon) { /* status is only drawn on selected monitor */
+	/*if (m == selmon) {  status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
 		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
-	//}
+	/*}*/
 
 	for (c = m->clients; c; c = c->next) {
 		occ |= c->tags;
@@ -1650,7 +1650,7 @@ showhide(Client *c)
 	} else {
 		/* hide clients bottom up */
 		showhide(c->snext);
-		//XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
+		/*XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);*/
         static XWindowAttributes ra, ca;
         XGetWindowAttributes(dpy, root, &ra);
         XGetWindowAttributes(dpy, c->win, &ca);
@@ -1754,7 +1754,7 @@ togglefloating(const Arg *arg)
         const Arg* a = {0};
         togglefullscr(a);
         free(a);
-		//return;
+		/*return;*/
     }
 	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
 	if (selmon->sel->isfloating)
